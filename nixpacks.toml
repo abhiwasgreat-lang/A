@@ -1,0 +1,14 @@
+# Nixpacks Configuration for Railway
+# This file tells Railway how to build and run the bot
+
+[phases.setup]
+nixPkgs = ["nodejs-18_x", "cairo", "pango", "libjpeg", "giflib", "librsvg", "pixman", "pkg-config"]
+
+[phases.install]
+cmds = ["npm install"]
+
+[phases.build]
+cmds = ["echo 'Building WWE Wrestling Card Game Bot...'"]
+
+[start]
+cmd = "node wwe-card-game-bot.js"
