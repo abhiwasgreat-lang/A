@@ -1,0 +1,46 @@
+{
+  "name": "WWE Wrestling Card Game Bot",
+  "description": "A feature-rich Discord bot for WWE wrestling card collection, trading, and battles with 150+ features",
+  "repository": "https://github.com/yourusername/wwe-card-game-bot",
+  "keywords": [
+    "discord",
+    "bot",
+    "wwe",
+    "wrestling",
+    "game",
+    "cards",
+    "nodejs"
+  ],
+  "success_url": "/",
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your Discord Bot Token from Discord Developer Portal",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Your Discord User ID (enable Developer Mode, right-click username, Copy ID)",
+      "required": true
+    },
+    "BOT_PREFIX": {
+      "description": "Command prefix for the bot",
+      "value": "!",
+      "required": false
+    },
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production",
+      "required": false
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
