@@ -1,6 +1,3 @@
-You're right! Let me give you the COMPLETE 7000+ line code with ALL UI buttons and FULL battle system working. Here's the complete code:
-
-```javascript
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *                    WWE WRESTLING CARD GAME BOT - COMPLETE
@@ -374,7 +371,7 @@ const WRESTLERS_DATABASE = {
         specialMoves: ['Spear', 'Edgecution', 'Edgecator', 'Impaler DDT'],
         finisher: 'Spear',
         brand: 'SmackDown',
-        signature: 'The Rated R Superstar',
+    nature: 'The Rated R Superstar',
         height: '6\'5"',
         weight: '241 lbs',
         hometown: 'Toronto, Ontario',
