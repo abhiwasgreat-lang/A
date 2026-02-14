@@ -1,4 +1,3 @@
-Here's the complete WWE Wrestling Card Game Bot in text format. Copy this entire code:
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *                    WWE WRESTLING CARD GAME BOT - COMPLETE
@@ -111,8 +110,7 @@ const WRESTLERS_DATABASE = {
     'CESARO': { id: 'CESARO', name: 'Cesaro', rarity: 'EPIC', basePrice: 1590000, stats: { overall: 87, power: 93, speed: 84, stamina: 89, technique: 92, charisma: 79, defense: 86 }, finisher: 'Neutralizer', brand: 'Raw' },
     'ALEXA_BLISS': { id: 'ALEXA_BLISS', name: 'Alexa Bliss', rarity: 'EPIC', basePrice: 1630000, stats: { overall: 87, power: 75, speed: 87, stamina: 83, technique: 88, charisma: 95, defense: 78 }, finisher: 'Twisted Bliss', brand: 'Raw' },
     'SASHA_BANKS': { id: 'SASHA_BANKS', name: 'Sasha Banks', rarity: 'EPIC', basePrice: 1670000, stats: { overall: 88, power: 78, speed: 91, stamina: 86, technique: 93, charisma: 92, defense: 80 }, finisher: 'Bank Statement', brand: 'SmackDown' },
-    'BAYLEY': { id: 'BAYLEY', name: 'Bayley', rarity: 'EPIC', basePrice: 1640000, stats: { overall: 87, power: 80, speed: 85, stamina: 88, technique: 90, charisma: 89, defense: 83 }, finisher: 'Rose Plant', brand: 'SmackDown' },
-    'IYO_SKY': { id: 'IYO_SKY', name: 'Iyo Sky', rarity: 'EPIC', basePrice: 1610000, stats: { overall: 86, power: 76, speed: 93, stamina: 84, technique: 91, charisma: 87, defense: 79 }, finisher: 'Over the Moonsault', brand: 'Raw' },
+    'BAYLEY': { id: 'BAYLEY', name: 'Bayley', rarity: 'EPIC', basePrice: 1640000, stats: { overall: 87, power: 80, speed: 85, stamina: 88, technique: 90, charisma: 89, defense: 83 }, finisher: 'Rose Plant', brand: 'SmacSmackDo  'IYO_SKY': { id: 'IYO_SKY', name: 'Iyo Sky', rarity: 'EPIC', basePrice: 1610000, stats: { overall: 86, power: 76, speed: 93, stamina: 84, technique: 91, charisma: 87, defense: 79 }, finisher: 'Over the Moonsault', brand: 'Raw' },
     'DAKOTA_KAI': { id: 'DAKOTA_KAI', name: 'Dakota Kai', rarity: 'EPIC', basePrice: 1570000, stats: { overall: 86, power: 79, speed: 89, stamina: 85, technique: 89, charisma: 84, defense: 80 }, finisher: 'Kairopractor', brand: 'Raw' },
     'SONYA_DEVILLE': { id: 'SONYA_DEVILLE', name: 'Sonya Deville', rarity: 'EPIC', basePrice: 1560000, stats: { overall: 85, power: 82, speed: 83, stamina: 86, technique: 88, charisma: 81, defense: 87 }, finisher: 'Devil\'s Advocate', brand: 'SmackDown' },
 
