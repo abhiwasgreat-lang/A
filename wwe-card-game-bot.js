@@ -3628,7 +3628,9 @@ client.on('interactionCreate', async interaction => {
 const commandHandler = new CommandHandler();
 
 // Login to Discord
-client.login(CONFIG.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+
+client.login(token);
 
 // Export for use in other files if needed
 module.exports = {
