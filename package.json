@@ -1,0 +1,50 @@
+{
+  "name": "wwe-wrestling-card-game-bot",
+  "version": "2.0.0",
+  "description": "A comprehensive WWE wrestling card collection and battle game for Discord with 150+ features",
+  "main": "wwe-card-game-bot.js",
+  "scripts": {
+    "start": "node wwe-card-game-bot.js",
+    "dev": "nodemon wwe-card-game-bot.js",
+    "test": "jest",
+    "deploy": "node wwe-card-game-bot.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "wwe",
+    "wrestling",
+    "cards",
+    "game",
+    "collection",
+    "battle",
+    "railway",
+    "discord-bot"
+  ],
+  "author": "WWE Card Game Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/wwe-card-game-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/wwe-card-game-bot/issues"
+  },
+  "homepage": "https://github.com/yourusername/wwe-card-game-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "axios": "^1.6.5",
+    "canvas": "^2.11.2",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
