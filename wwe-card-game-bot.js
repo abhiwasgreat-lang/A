@@ -1,4 +1,3 @@
-I'll give you the COMPLETE CODE with the rotation system and REAL IMAGE CARDS using Canvas to create WWE-style cards like in your photo. This will include wrestler images.
 /**
  * ═══════════════════════════════════════════════════════════════════════════
  *                    WWE WRESTLING CARD GAME BOT - COMPLETE
