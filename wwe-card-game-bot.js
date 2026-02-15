@@ -304,17 +304,7 @@ const WRESTLERS_DATABASE = {
         brand: 'Raw',
         signature: 'The Visionary'
     },
-    'AJ_STYLES': {
-        id: 'AJ_STYLES',
-        name: 'AJ Styles',
-        rarity: 'EPIC',
-        basePrice: 1780000,
-        stats: { overall: 90, power: 82, speed: 94, stamina: 86, technique: 96, charisma: 88, defense: 83 },
-        finisher: 'Phenomenal Forearm'
-        brand: 'Raw', 
-        signature: 'Phenomenal One'
-    },
-    'RANDY_ORTON': {
+    'RANDYY_ORTON': {
         id: 'RANDY_ORTON',
         name: 'Randy Orton',
         rarity: 'EPIC',
