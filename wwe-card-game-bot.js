@@ -20,179 +20,108 @@ const CONFIG = {
     XP_MULTIPLIER: 1.5,
     COLORS: { COMMON: '#808080', RARE: '#0070DD', EPIC: '#A335EE', LEGENDARY: '#FF8000', MYTHIC: '#FFD700' },
     CARD_COLORS: {
-        COMMON: { primary: '#708090', secondary: '#4A5568', text: '#FFFFFF', glow: 'rgba(112,128,144,0.5)' },
-        RARE: { primary: '#0070DD', secondary: '#004d99', text: '#FFFFFF', glow: 'rgba(0,112,221,0.6)' },
-        EPIC: { primary: '#A335EE', secondary: '#7a1fb8', text: '#FFFFFF', glow: 'rgba(163,53,238,0.7)' },
-        LEGENDARY: { primary: '#FF8000', secondary: '#cc6600', text: '#FFFFFF', glow: 'rgba(255,128,0,0.8)' },
-        MYTHIC: { primary: '#FFD700', secondary: '#FFA500', text: '#000000', glow: 'rgba(255,215,0,0.9)' }
+        COMMON: { primary: '#708090', secondary: '#4A5568', text: '#FFFFFF' },
+        RARE: { primary: '#0070DD', secondary: '#004d99', text: '#FFFFFF' },
+        EPIC: { primary: '#A335EE', secondary: '#7a1fb8', text: '#FFFFFF' },
+        LEGENDARY: { primary: '#FF8000', secondary: '#cc6600', text: '#FFFFFF' },
+        MYTHIC: { primary: '#FFD700', secondary: '#FFA500', text: '#000000' }
+    },
+    MOVE_ANIMATIONS: {
+        strike: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        punch: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        kick: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        grapple: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        suplex: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        ddt: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        powerbomb: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        slam: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        submission: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        clothesline: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        dropkick: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        elbow: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        knee: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        special: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        finisher: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        blocked: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif',
+        reversed: 'https://media.tenor.com/Vb0S_pQO8H4AAAAC/mika-street-fighter.gif'
     }
 };
 
 const DB_PATHS = { USERS: './database/users.json', MATCHES: './database/matches.json' };
 
 const WRESTLERS_DATABASE = {
-    UNDERTAKER: { id: 'UNDERTAKER', name: 'The Undertaker', rarity: 'MYTHIC', basePrice: 3500000, stats: { overall: 98, power: 95, speed: 80, stamina: 90, technique: 96, charisma: 98, defense: 94 }, finisher: 'Tombstone Piledriver', brand: 'Legend', signature: 'The Deadman', imageUrl: 'https://i.imgur.com/undertaker.png' },
-    STONE_COLD: { id: 'STONE_COLD', name: 'Stone Cold Steve Austin', rarity: 'MYTHIC', basePrice: 3450000, stats: { overall: 97, power: 94, speed: 84, stamina: 93, technique: 90, charisma: 99, defense: 91 }, finisher: 'Stone Cold Stunner', brand: 'Legend', signature: 'The Texas Rattlesnake', imageUrl: 'https://i.imgur.com/stonecold.png' },
-    THE_ROCK: { id: 'THE_ROCK', name: 'The Rock', rarity: 'MYTHIC', basePrice: 3400000, stats: { overall: 97, power: 93, speed: 86, stamina: 92, technique: 91, charisma: 100, defense: 89 }, finisher: 'Rock Bottom', brand: 'Legend', signature: 'The Great One', imageUrl: 'https://i.imgur.com/therock.png' },
-    SHAWN_MICHAELS: { id: 'SHAWN_MICHAELS', name: 'Shawn Michaels', rarity: 'MYTHIC', basePrice: 3350000, stats: { overall: 96, power: 87, speed: 95, stamina: 88, technique: 98, charisma: 96, defense: 85 }, finisher: 'Sweet Chin Music', brand: 'Legend', signature: 'The Heartbreak Kid', imageUrl: 'https://i.imgur.com/hbk.png' },
-    TRIPLE_H: { id: 'TRIPLE_H', name: 'Triple H', rarity: 'MYTHIC', basePrice: 3300000, stats: { overall: 96, power: 92, speed: 83, stamina: 93, technique: 94, charisma: 95, defense: 92 }, finisher: 'Pedigree', brand: 'Legend', signature: 'The Game', imageUrl: 'https://i.imgur.com/tripleh.png' },
-    ROMAN_REIGNS: { id: 'ROMAN_REIGNS', name: 'Roman Reigns', rarity: 'LEGENDARY', basePrice: 3050000, stats: { overall: 96, power: 98, speed: 85, stamina: 92, technique: 90, charisma: 95, defense: 88 }, finisher: 'Spear', brand: 'SmackDown', signature: 'The Tribal Chief', imageUrl: 'https://i.imgur.com/roman.png' },
-    BROCK_LESNAR: { id: 'BROCK_LESNAR', name: 'Brock Lesnar', rarity: 'LEGENDARY', basePrice: 2980000, stats: { overall: 95, power: 99, speed: 82, stamina: 94, technique: 88, charisma: 85, defense: 95 }, finisher: 'F5', brand: 'Raw', signature: 'The Beast Incarnate', imageUrl: 'https://i.imgur.com/brock.png' },
-    JOHN_CENA: { id: 'JOHN_CENA', name: 'John Cena', rarity: 'LEGENDARY', basePrice: 2900000, stats: { overall: 94, power: 92, speed: 88, stamina: 96, technique: 89, charisma: 99, defense: 87 }, finisher: 'Attitude Adjustment', brand: 'Free Agent', signature: 'You Cannot See Me', imageUrl: 'https://i.imgur.com/cena.png' },
-    EDGE: { id: 'EDGE', name: 'Edge', rarity: 'LEGENDARY', basePrice: 2750000, stats: { overall: 93, power: 87, speed: 84, stamina: 88, technique: 92, charisma: 94, defense: 86 }, finisher: 'Spear', brand: 'SmackDown', signature: 'The Rated R Superstar', imageUrl: 'https://i.imgur.com/edge.png' },
-    BECKY_LYNCH: { id: 'BECKY_LYNCH', name: 'Becky Lynch', rarity: 'LEGENDARY', basePrice: 2850000, stats: { overall: 94, power: 86, speed: 89, stamina: 90, technique: 92, charisma: 96, defense: 85 }, finisher: 'Manhandle Slam', brand: 'Raw', signature: 'The Man', imageUrl: 'https://i.imgur.com/becky.png' },
-    SETH_ROLLINS: { id: 'SETH_ROLLINS', name: 'Seth Rollins', rarity: 'EPIC', basePrice: 1850000, stats: { overall: 91, power: 85, speed: 92, stamina: 88, technique: 94, charisma: 89, defense: 84 }, finisher: 'Curb Stomp', brand: 'Raw', signature: 'The Visionary', imageUrl: 'https://i.imgur.com/seth.png' },
-    AJ_STYLES: { id: 'AJ_STYLES', name: 'AJ Styles', rarity: 'EPIC', basePrice: 1780000, stats: { overall: 90, power: 82, speed: 94, stamina: 86, technique: 96, charisma: 88, defense: 83 }, finisher: 'Phenomenal Forearm', brand: 'SmackDown', signature: 'The Phenomenal One', imageUrl: 'https://i.imgur.com/aj.png' },
-    RANDY_ORTON: { id: 'RANDY_ORTON', name: 'Randy Orton', rarity: 'EPIC', basePrice: 1820000, stats: { overall: 90, power: 88, speed: 86, stamina: 89, technique: 93, charisma: 87, defense: 85 }, finisher: 'RKO', brand: 'SmackDown', signature: 'The Viper', imageUrl: 'https://i.imgur.com/orton.png' },
-    RHEA_RIPLEY: { id: 'RHEA_RIPLEY', name: 'Rhea Ripley', rarity: 'EPIC', basePrice: 1720000, stats: { overall: 89, power: 91, speed: 84, stamina: 87, technique: 88, charisma: 89, defense: 90 }, finisher: 'Riptide', brand: 'Raw', signature: 'The Nightmare', imageUrl: 'https://i.imgur.com/rhea.png' },
-    DREW_MCINTYRE: { id: 'DREW_MCINTYRE', name: 'Drew McIntyre', rarity: 'RARE', basePrice: 980000, stats: { overall: 87, power: 92, speed: 81, stamina: 85, technique: 86, charisma: 84, defense: 88 }, finisher: 'Claymore Kick', brand: 'SmackDown', signature: 'The Scottish Warrior', imageUrl: 'https://i.imgur.com/drew.png' },
-    KEVIN_OWENS: { id: 'KEVIN_OWENS', name: 'Kevin Owens', rarity: 'RARE', basePrice: 920000, stats: { overall: 86, power: 88, speed: 79, stamina: 87, technique: 89, charisma: 85, defense: 82 }, finisher: 'Stunner', brand: 'Raw', signature: 'The Prize Fighter', imageUrl: 'https://i.imgur.com/ko.png' },
-    FINN_BALOR: { id: 'FINN_BALOR', name: 'Finn Balor', rarity: 'RARE', basePrice: 950000, stats: { overall: 86, power: 80, speed: 91, stamina: 84, technique: 90, charisma: 87, defense: 79 }, finisher: 'Coup de Grace', brand: 'SmackDown', signature: 'The Prince', imageUrl: 'https://i.imgur.com/finn.png' },
-    RICOCHET: { id: 'RICOCHET', name: 'Ricochet', rarity: 'COMMON', basePrice: 450000, stats: { overall: 82, power: 75, speed: 95, stamina: 81, technique: 87, charisma: 79, defense: 74 }, finisher: '630 Senton', brand: 'SmackDown', signature: 'The One and Only', imageUrl: 'https://i.imgur.com/ricochet.png' },
-    DOLPH_ZIGGLER: { id: 'DOLPH_ZIGGLER', name: 'Dolph Ziggler', rarity: 'COMMON', basePrice: 420000, stats: { overall: 81, power: 76, speed: 88, stamina: 83, technique: 85, charisma: 80, defense: 75 }, finisher: 'Zig Zag', brand: 'Raw', signature: 'The Showoff', imageUrl: 'https://i.imgur.com/ziggler.png' },
-    BARON_CORBIN: { id: 'BARON_CORBIN', name: 'Baron Corbin', rarity: 'COMMON', basePrice: 430000, stats: { overall: 81, power: 87, speed: 76, stamina: 83, technique: 78, charisma: 74, defense: 84 }, finisher: 'End of Days', brand: 'SmackDown', signature: 'The Lone Wolf', imageUrl: 'https://i.imgur.com/corbin.png' }
+    UNDERTAKER: { id: 'UNDERTAKER', name: 'The Undertaker', rarity: 'MYTHIC', basePrice: 3500000, stats: { overall: 98, power: 95, speed: 80, stamina: 90, technique: 96, charisma: 98, defense: 94 }, finisher: 'Tombstone', brand: 'Legend', signature: 'Deadman', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4e5e6f22-6d18-4c4c-a5d1-e6a6e8e5f5e5/undertaker.png' },
+    STONE_COLD: { id: 'STONE_COLD', name: 'Stone Cold', rarity: 'MYTHIC', basePrice: 3450000, stats: { overall: 97, power: 94, speed: 84, stamina: 93, technique: 90, charisma: 99, defense: 91 }, finisher: 'Stunner', brand: 'Legend', signature: 'Rattlesnake', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/stonecold.png' },
+    THE_ROCK: { id: 'THE_ROCK', name: 'The Rock', rarity: 'MYTHIC', basePrice: 3400000, stats: { overall: 97, power: 93, speed: 86, stamina: 92, technique: 91, charisma: 100, defense: 89 }, finisher: 'Rock Bottom', brand: 'Legend', signature: 'Great One', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/therock.png' },
+    SHAWN_MICHAELS: { id: 'SHAWN_MICHAELS', name: 'Shawn Michaels', rarity: 'MYTHIC', basePrice: 3350000, stats: { overall: 96, power: 87, speed: 95, stamina: 88, technique: 98, charisma: 96, defense: 85 }, finisher: 'Sweet Chin Music', brand: 'Legend', signature: 'HBK', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/hbk.png' },
+    TRIPLE_H: { id: 'TRIPLE_H', name: 'Triple H', rarity: 'MYTHIC', basePrice: 3300000, stats: { overall: 96, power: 92, speed: 83, stamina: 93, technique: 94, charisma: 95, defense: 92 }, finisher: 'Pedigree', brand: 'Legend', signature: 'The Game', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/tripleh.png' },
+    HULK_HOGAN: { id: 'HULK_HOGAN', name: 'Hulk Hogan', rarity: 'MYTHIC', basePrice: 3200000, stats: { overall: 95, power: 91, speed: 79, stamina: 92, technique: 84, charisma: 98, defense: 89 }, finisher: 'Leg Drop', brand: 'Legend', signature: 'Hulkster', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/hogan.png' },
+    BRET_HART: { id: 'BRET_HART', name: 'Bret Hart', rarity: 'MYTHIC', basePrice: 3100000, stats: { overall: 94, power: 86, speed: 84, stamina: 90, technique: 97, charisma: 90, defense: 87 }, finisher: 'Sharpshooter', brand: 'Legend', signature: 'Excellence', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/bret.png' },
+    ROMAN_REIGNS: { id: 'ROMAN_REIGNS', name: 'Roman Reigns', rarity: 'LEGENDARY', basePrice: 3050000, stats: { overall: 96, power: 98, speed: 85, stamina: 92, technique: 90, charisma: 95, defense: 88 }, finisher: 'Spear', brand: 'SmackDown', signature: 'Tribal Chief', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/roman.png' },
+    BROCK_LESNAR: { id: 'BROCK_LESNAR', name: 'Brock Lesnar', rarity: 'LEGENDARY', basePrice: 2980000, stats: { overall: 95, power: 99, speed: 82, stamina: 94, technique: 88, charisma: 85, defense: 95 }, finisher: 'F5', brand: 'Raw', signature: 'Beast', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/brock.png' },
+    JOHN_CENA: { id: 'JOHN_CENA', name: 'John Cena', rarity: 'LEGENDARY', basePrice: 2900000, stats: { overall: 94, power: 92, speed: 88, stamina: 96, technique: 89, charisma: 99, defense: 87 }, finisher: 'AA', brand: 'Free Agent', signature: 'Never Give Up', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/cena.png' },
+    EDGE: { id: 'EDGE', name: 'Edge', rarity: 'LEGENDARY', basePrice: 2750000, stats: { overall: 93, power: 87, speed: 84, stamina: 88, technique: 92, charisma: 94, defense: 86 }, finisher: 'Spear', brand: 'SmackDown', signature: 'Rated R', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/edge.png' },
+    BECKY_LYNCH: { id: 'BECKY_LYNCH', name: 'Becky Lynch', rarity: 'LEGENDARY', basePrice: 2850000, stats: { overall: 94, power: 86, speed: 89, stamina: 90, technique: 92, charisma: 96, defense: 85 }, finisher: 'Manhandle Slam', brand: 'Raw', signature: 'The Man', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/becky.png' },
+    CHARLOTTE_FLAIR: { id: 'CHARLOTTE_FLAIR', name: 'Charlotte Flair', rarity: 'LEGENDARY', basePrice: 2820000, stats: { overall: 93, power: 84, speed: 88, stamina: 89, technique: 94, charisma: 93, defense: 87 }, finisher: 'Natural Selection', brand: 'SmackDown', signature: 'Queen', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/charlotte.png' },
+    CM_PUNK: { id: 'CM_PUNK', name: 'CM Punk', rarity: 'LEGENDARY', basePrice: 2780000, stats: { overall: 92, power: 85, speed: 89, stamina: 90, technique: 94, charisma: 97, defense: 84 }, finisher: 'GTS', brand: 'Raw', signature: 'Best in World', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/punk.png' },
+    BATISTA: { id: 'BATISTA', name: 'Batista', rarity: 'LEGENDARY', basePrice: 2700000, stats: { overall: 91, power: 96, speed: 78, stamina: 91, technique: 84, charisma: 88, defense: 93 }, finisher: 'Batista Bomb', brand: 'Legend', signature: 'Animal', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/batista.png' },
+    REY_MYSTERIO: { id: 'REY_MYSTERIO', name: 'Rey Mysterio', rarity: 'LEGENDARY', basePrice: 2680000, stats: { overall: 91, power: 72, speed: 96, stamina: 82, technique: 94, charisma: 91, defense: 76 }, finisher: '619', brand: 'SmackDown', signature: 'Underdog', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/rey.png' },
+    KANE: { id: 'KANE', name: 'Kane', rarity: 'LEGENDARY', basePrice: 2650000, stats: { overall: 90, power: 94, speed: 75, stamina: 89, technique: 85, charisma: 87, defense: 92 }, finisher: 'Chokeslam', brand: 'Legend', signature: 'Big Red Machine', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/kane.png' },
+    RIC_FLAIR: { id: 'RIC_FLAIR', name: 'Ric Flair', rarity: 'LEGENDARY', basePrice: 2800000, stats: { overall: 93, power: 83, speed: 81, stamina: 88, technique: 95, charisma: 99, defense: 85 }, finisher: 'Figure Four', brand: 'Legend', signature: 'Nature Boy', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/flair.png' },
+    RANDY_SAVAGE: { id: 'RANDY_SAVAGE', name: 'Randy Savage', rarity: 'LEGENDARY', basePrice: 2750000, stats: { overall: 92, power: 89, speed: 88, stamina: 90, technique: 92, charisma: 96, defense: 86 }, finisher: 'Elbow Drop', brand: 'Legend', signature: 'Macho Man', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/savage.png' },
+    ULTIMATE_WARRIOR: { id: 'ULTIMATE_WARRIOR', name: 'Ultimate Warrior', rarity: 'LEGENDARY', basePrice: 2680000, stats: { overall: 90, power: 94, speed: 91, stamina: 95, technique: 80, charisma: 93, defense: 87 }, finisher: 'Splash', brand: 'Legend', signature: 'Warrior', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/warrior.png' },
+    SETH_ROLLINS: { id: 'SETH_ROLLINS', name: 'Seth Rollins', rarity: 'EPIC', basePrice: 1850000, stats: { overall: 91, power: 85, speed: 92, stamina: 88, technique: 94, charisma: 89, defense: 84 }, finisher: 'Curb Stomp', brand: 'Raw', signature: 'Visionary', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/seth.png' },
+    AJ_STYLES: { id: 'AJ_STYLES', name: 'AJ Styles', rarity: 'EPIC', basePrice: 1780000, stats: { overall: 90, power: 82, speed: 94, stamina: 86, technique: 96, charisma: 88, defense: 83 }, finisher: 'Phenomenal Forearm', brand: 'SmackDown', signature: 'Phenomenal', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/aj.png' },
+    RANDY_ORTON: { id: 'RANDY_ORTON', name: 'Randy Orton', rarity: 'EPIC', basePrice: 1820000, stats: { overall: 90, power: 88, speed: 86, stamina: 89, technique: 93, charisma: 87, defense: 85 }, finisher: 'RKO', brand: 'SmackDown', signature: 'Viper', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/orton.png' },
+    BOBBY_LASHLEY: { id: 'BOBBY_LASHLEY', name: 'Bobby Lashley', rarity: 'EPIC', basePrice: 1750000, stats: { overall: 89, power: 96, speed: 80, stamina: 91, technique: 84, charisma: 82, defense: 90 }, finisher: 'Hurt Lock', brand: 'Raw', signature: 'All Mighty', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/lashley.png' },
+    RHEA_RIPLEY: { id: 'RHEA_RIPLEY', name: 'Rhea Ripley', rarity: 'EPIC', basePrice: 1720000, stats: { overall: 89, power: 91, speed: 84, stamina: 87, technique: 88, charisma: 89, defense: 90 }, finisher: 'Riptide', brand: 'Raw', signature: 'Nightmare', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/rhea.png' },
+    BIANCA_BELAIR: { id: 'BIANCA_BELAIR', name: 'Bianca Belair', rarity: 'EPIC', basePrice: 1690000, stats: { overall: 88, power: 89, speed: 92, stamina: 90, technique: 86, charisma: 90, defense: 83 }, finisher: 'KOD', brand: 'Raw', signature: 'EST', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/bianca.png' },
+    ASUKA: { id: 'ASUKA', name: 'Asuka', rarity: 'EPIC', basePrice: 1650000, stats: { overall: 87, power: 83, speed: 90, stamina: 85, technique: 93, charisma: 88, defense: 84 }, finisher: 'Asuka Lock', brand: 'SmackDown', signature: 'Empress', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/asuka.png' },
+    SAMI_ZAYN: { id: 'SAMI_ZAYN', name: 'Sami Zayn', rarity: 'EPIC', basePrice: 1580000, stats: { overall: 87, power: 80, speed: 89, stamina: 86, technique: 92, charisma: 90, defense: 81 }, finisher: 'Helluva Kick', brand: 'SmackDown', signature: 'Underdog', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/sami.png' },
+    CODY_RHODES: { id: 'CODY_RHODES', name: 'Cody Rhodes', rarity: 'EPIC', basePrice: 1820000, stats: { overall: 90, power: 86, speed: 88, stamina: 89, technique: 91, charisma: 94, defense: 85 }, finisher: 'Cross Rhodes', brand: 'SmackDown', signature: 'American Nightmare', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/cody.png' },
+    SHEAMUS: { id: 'SHEAMUS', name: 'Sheamus', rarity: 'EPIC', basePrice: 1600000, stats: { overall: 87, power: 90, speed: 75, stamina: 88, technique: 83, charisma: 82, defense: 91 }, finisher: 'Brogue Kick', brand: 'SmackDown', signature: 'Celtic Warrior', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/sheamus.png' },
+    NAKAMURA: { id: 'NAKAMURA', name: 'Shinsuke Nakamura', rarity: 'EPIC', basePrice: 1640000, stats: { overall: 88, power: 84, speed: 88, stamina: 85, technique: 94, charisma: 91, defense: 82 }, finisher: 'Kinshasa', brand: 'SmackDown', signature: 'King of Strong Style', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/nakamura.png' },
+    BRAUN_STROWMAN: { id: 'BRAUN_STROWMAN', name: 'Braun Strowman', rarity: 'EPIC', basePrice: 1680000, stats: { overall: 88, power: 98, speed: 72, stamina: 90, technique: 79, charisma: 85, defense: 94 }, finisher: 'Powerslam', brand: 'SmackDown', signature: 'Monster', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/braun.png' },
+    SAMOA_JOE: { id: 'SAMOA_JOE', name: 'Samoa Joe', rarity: 'EPIC', basePrice: 1620000, stats: { overall: 87, power: 91, speed: 79, stamina: 87, technique: 93, charisma: 86, defense: 89 }, finisher: 'Coquina Clutch', brand: 'SmackDown', signature: 'Submission Machine', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/joe.png' },
+    KOFI_KINGSTON: { id: 'KOFI_KINGSTON', name: 'Kofi Kingston', rarity: 'EPIC', basePrice: 1550000, stats: { overall: 86, power: 81, speed: 93, stamina: 87, technique: 88, charisma: 89, defense: 80 }, finisher: 'Trouble in Paradise', brand: 'Raw', signature: 'Dreadlocked', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/kofi.png' },
+    XAVIER_WOODS: { id: 'XAVIER_WOODS', name: 'Xavier Woods', rarity: 'EPIC', basePrice: 1520000, stats: { overall: 85, power: 79, speed: 91, stamina: 86, technique: 87, charisma: 92, defense: 78 }, finisher: 'Honor Roll', brand: 'Raw', signature: 'King Woods', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/xavier.png' },
+    BIG_E: { id: 'BIG_E', name: 'Big E', rarity: 'EPIC', basePrice: 1590000, stats: { overall: 87, power: 93, speed: 82, stamina: 88, technique: 85, charisma: 91, defense: 87 }, finisher: 'Big Ending', brand: 'Raw', signature: 'Powerhouse', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/bige.png' },
+    CESARO: { id: 'CESARO', name: 'Cesaro', rarity: 'EPIC', basePrice: 1610000, stats: { overall: 87, power: 95, speed: 83, stamina: 89, technique: 94, charisma: 80, defense: 86 }, finisher: 'Neutralizer', brand: 'SmackDown', signature: 'Swiss Cyborg', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/cesaro.png' },
+    RIDDLE: { id: 'RIDDLE', name: 'Riddle', rarity: 'EPIC', basePrice: 1560000, stats: { overall: 86, power: 84, speed: 87, stamina: 88, technique: 91, charisma: 87, defense: 82 }, finisher: 'RKO', brand: 'Raw', signature: 'Bro', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/riddle.png' },
+    LA_KNIGHT: { id: 'LA_KNIGHT', name: 'LA Knight', rarity: 'EPIC', basePrice: 1700000, stats: { overall: 88, power: 87, speed: 85, stamina: 87, technique: 89, charisma: 95, defense: 84 }, finisher: 'BFT', brand: 'SmackDown', signature: 'Yeah', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/laknight.png' },
+    GUNTHER: { id: 'GUNTHER', name: 'Gunther', rarity: 'EPIC', basePrice: 1780000, stats: { overall: 90, power: 94, speed: 80, stamina: 92, technique: 95, charisma: 86, defense: 93 }, finisher: 'Powerbomb', brand: 'Raw', signature: 'Ring General', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/gunther.png' },
+    DREW_MCINTYRE: { id: 'DREW_MCINTYRE', name: 'Drew McIntyre', rarity: 'RARE', basePrice: 980000, stats: { overall: 87, power: 92, speed: 81, stamina: 85, technique: 86, charisma: 84, defense: 88 }, finisher: 'Claymore', brand: 'SmackDown', signature: 'Scottish Warrior', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/drew.png' },
+    KEVIN_OWENS: { id: 'KEVIN_OWENS', name: 'Kevin Owens', rarity: 'RARE', basePrice: 920000, stats: { overall: 86, power: 88, speed: 79, stamina: 87, technique: 89, charisma: 85, defense: 82 }, finisher: 'Stunner', brand: 'Raw', signature: 'Prize Fighter', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/ko.png' },
+    FINN_BALOR: { id: 'FINN_BALOR', name: 'Finn Balor', rarity: 'RARE', basePrice: 950000, stats: { overall: 86, power: 80, speed: 91, stamina: 84, technique: 90, charisma: 87, defense: 79 }, finisher: 'Coup de Grace', brand: 'SmackDown', signature: 'Prince', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/finn.png' },
+    DAMIAN_PRIEST: { id: 'DAMIAN_PRIEST', name: 'Damian Priest', rarity: 'RARE', basePrice: 900000, stats: { overall: 85, power: 90, speed: 83, stamina: 86, technique: 84, charisma: 83, defense: 85 }, finisher: 'South of Heaven', brand: 'Raw', signature: 'Archer', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/priest.png' },
+    DOMINIK_MYSTERIO: { id: 'DOMINIK_MYSTERIO', name: 'Dominik Mysterio', rarity: 'RARE', basePrice: 850000, stats: { overall: 84, power: 78, speed: 88, stamina: 83, technique: 86, charisma: 82, defense: 77 }, finisher: '619', brand: 'Raw', signature: 'Dirty Dom', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/dom.png' },
+    AUSTIN_THEORY: { id: 'AUSTIN_THEORY', name: 'Austin Theory', rarity: 'RARE', basePrice: 880000, stats: { overall: 84, power: 83, speed: 86, stamina: 85, technique: 85, charisma: 84, defense: 80 }, finisher: 'ATL', brand: 'Raw', signature: 'A-Town', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/theory.png' },
+    BRONSON_REED: { id: 'BRONSON_REED', name: 'Bronson Reed', rarity: 'RARE', basePrice: 910000, stats: { overall: 85, power: 94, speed: 74, stamina: 88, technique: 82, charisma: 79, defense: 90 }, finisher: 'Tsunami', brand: 'Raw', signature: 'Big Bronson', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/reed.png' },
+    LUDWIG_KAISER: { id: 'LUDWIG_KAISER', name: 'Ludwig Kaiser', rarity: 'RARE', basePrice: 870000, stats: { overall: 84, power: 85, speed: 83, stamina: 84, technique: 88, charisma: 80, defense: 83 }, finisher: 'Kaiser Roll', brand: 'Raw', signature: 'Austrian', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/kaiser.png' },
+    SANTOS_ESCOBAR: { id: 'SANTOS_ESCOBAR', name: 'Santos Escobar', rarity: 'RARE', basePrice: 890000, stats: { overall: 85, power: 82, speed: 88, stamina: 85, technique: 89, charisma: 83, defense: 81 }, finisher: 'Phantom Driver', brand: 'SmackDown', signature: 'El Hijo', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/santos.png' },
+    ANGELO_DAWKINS: { id: 'ANGELO_DAWKINS', name: 'Angelo Dawkins', rarity: 'RARE', basePrice: 820000, stats: { overall: 83, power: 86, speed: 82, stamina: 84, technique: 81, charisma: 85, defense: 82 }, finisher: 'Anoint', brand: 'SmackDown', signature: 'Curse', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/dawkins.png' },
+    MONTEZ_FORD: { id: 'MONTEZ_FORD', name: 'Montez Ford', rarity: 'RARE', basePrice: 860000, stats: { overall: 84, power: 81, speed: 93, stamina: 86, technique: 84, charisma: 89, defense: 78 }, finisher: 'From Heavens', brand: 'SmackDown', signature: 'Frog Splash', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/montez.png' },
+    CHAD_GABLE: { id: 'CHAD_GABLE', name: 'Chad Gable', rarity: 'RARE', basePrice: 930000, stats: { overall: 86, power: 84, speed: 87, stamina: 86, technique: 95, charisma: 82, defense: 84 }, finisher: 'Chaos Theory', brand: 'Raw', signature: 'Master Gable', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/gable.png' },
+    OTIS: { id: 'OTIS', name: 'Otis', rarity: 'RARE', basePrice: 840000, stats: { overall: 83, power: 92, speed: 73, stamina: 86, technique: 79, charisma: 88, defense: 88 }, finisher: 'Caterpillar', brand: 'Raw', signature: 'Oh Yeah', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/otis.png' },
+    CARMELO_HAYES: { id: 'CARMELO_HAYES', name: 'Carmelo Hayes', rarity: 'RARE', basePrice: 940000, stats: { overall: 86, power: 81, speed: 90, stamina: 85, technique: 88, charisma: 87, defense: 79 }, finisher: 'Nothing But Net', brand: 'SmackDown', signature: 'Him', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/hayes.png' },
+    ANDRADE: { id: 'ANDRADE', name: 'Andrade', rarity: 'RARE', basePrice: 960000, stats: { overall: 86, power: 84, speed: 89, stamina: 84, technique: 91, charisma: 83, defense: 82 }, finisher: 'Hammerlock DDT', brand: 'SmackDown', signature: 'El Idolo', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/andrade.png' },
+    TOMMASO_CIAMPA: { id: 'TOMMASO_CIAMPA', name: 'Tommaso Ciampa', rarity: 'RARE', basePrice: 900000, stats: { overall: 85, power: 87, speed: 81, stamina: 86, technique: 90, charisma: 84, defense: 85 }, finisher: 'Fairytale Ending', brand: 'Raw', signature: 'Psycho Killer', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/ciampa.png' },
+    TYLER_BATE: { id: 'TYLER_BATE', name: 'Tyler Bate', rarity: 'RARE', basePrice: 870000, stats: { overall: 84, power: 86, speed: 86, stamina: 87, technique: 90, charisma: 82, defense: 81 }, finisher: 'Tyler Driver 97', brand: 'SmackDown', signature: 'Big Strong Boy', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/bate.png' },
+    DRAGON_LEE: { id: 'DRAGON_LEE', name: 'Dragon Lee', rarity: 'RARE', basePrice: 890000, stats: { overall: 85, power: 79, speed: 95, stamina: 82, technique: 88, charisma: 81, defense: 76 }, finisher: 'Dragonrana', brand: 'Raw', signature: 'Dragon', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/dragonlee.png' },
+    JD_MCDONAGH: { id: 'JD_MCDONAGH', name: 'JD McDonagh', rarity: 'RARE', basePrice: 850000, stats: { overall: 84, power: 82, speed: 87, stamina: 84, technique: 88, charisma: 80, defense: 80 }, finisher: 'Devils Inside', brand: 'Raw', signature: 'Irish Ace', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/jd.png' },
+    RICOCHET: { id: 'RICOCHET', name: 'Ricochet', rarity: 'COMMON', basePrice: 450000, stats: { overall: 82, power: 75, speed: 95, stamina: 81, technique: 87, charisma: 79, defense: 74 }, finisher: '630', brand: 'SmackDown', signature: 'One and Only', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/ricochet.png' },
+    DOLPH_ZIGGLER: { id: 'DOLPH_ZIGGLER', name: 'Dolph Ziggler', rarity: 'COMMON', basePrice: 420000, stats: { overall: 81, power: 76, speed: 88, stamina: 83, technique: 85, charisma: 80, defense: 75 }, finisher: 'Zig Zag', brand: 'Raw', signature: 'Showoff', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/ziggler.png' },
+    BARON_CORBIN: { id: 'BARON_CORBIN', name: 'Baron Corbin', rarity: 'COMMON', basePrice: 430000, stats: { overall: 81, power: 87, speed: 76, stamina: 83, technique: 78, charisma: 74, defense: 84 }, finisher: 'End of Days', brand: 'SmackDown', signature: 'Lone Wolf', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/corbin.png' },
+    IVAR: { id: 'IVAR', name: 'Ivar', rarity: 'COMMON', basePrice: 410000, stats: { overall: 80, power: 90, speed: 72, stamina: 82, technique: 77, charisma: 76, defense: 86 }, finisher: 'Viking Splash', brand: 'Raw', signature: 'Viking', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/ivar.png' },
+    VALHALLA: { id: 'VALHALLA', name: 'Valhalla', rarity: 'COMMON', basePrice: 400000, stats: { overall: 79, power: 76, speed: 81, stamina: 80, technique: 79, charisma: 84, defense: 77 }, finisher: 'Shield Slam', brand: 'Raw', signature: 'Warrior', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/valhalla.png' },
+    AKIRA_TOZAWA: { id: 'AKIRA_TOZAWA', name: 'Akira Tozawa', rarity: 'COMMON', basePrice: 390000, stats: { overall: 79, power: 74, speed: 89, stamina: 80, technique: 83, charisma: 77, defense: 73 }, finisher: 'Senton', brand: 'Raw', signature: 'Ah', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/tozawa.png' },
+    SHELTON_BENJAMIN: { id: 'SHELTON_BENJAMIN', name: 'Shelton Benjamin', rarity: 'COMMON', basePrice: 440000, stats: { overall: 81, power: 83, speed: 85, stamina: 81, technique: 86, charisma: 76, defense: 80 }, finisher: 'Paydirt', brand: 'SmackDown', signature: 'Gold Standard', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/shelton.png' },
+    R_TRUTH: { id: 'R_TRUTH', name: 'R-Truth', rarity: 'COMMON', basePrice: 430000, stats: { overall: 80, power: 77, speed: 83, stamina: 82, technique: 80, charisma: 92, defense: 76 }, finisher: 'AA', brand: 'Raw', signature: 'Whats Up', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/truth.png' },
+    APOLLO_CREWS: { id: 'APOLLO_CREWS', name: 'Apollo Crews', rarity: 'COMMON', basePrice: 460000, stats: { overall: 82, power: 84, speed: 87, stamina: 83, technique: 82, charisma: 78, defense: 79 }, finisher: 'Standing Moonsault', brand: 'SmackDown', signature: 'Conqueror', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/apollo.png' },
+    CEDRIC_ALEXANDER: { id: 'CEDRIC_ALEXANDER', name: 'Cedric Alexander', rarity: 'COMMON', basePrice: 440000, stats: { overall: 81, power: 78, speed: 91, stamina: 81, technique: 85, charisma: 77, defense: 75 }, finisher: 'Lumbar Check', brand: 'Raw', signature: 'Heart of 205', imageUrl: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/cedric.png' }
 };
 
 const WRESTLERS_ARRAY = Object.values(WRESTLERS_DATABASE);
-
-class PixelAnimationGenerator {
-    static createWrestlingAnimation(moveType) {
-        const canvas = createCanvas(800, 600);
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#2ECC71';
-        ctx.fillRect(0, 0, 800, 600);
-        const animations = {
-            strike: () => this.drawStrike(ctx),
-            grapple: () => this.drawGrapple(ctx),
-            suplex: () => this.drawSuplex(ctx),
-            ddt: () => this.drawDDT(ctx),
-            powerbomb: () => this.drawPowerbomb(ctx),
-            slam: () => this.drawSlam(ctx),
-            submission: () => this.drawSubmission(ctx),
-            finisher: () => this.drawFinisher(ctx)
-        };
-        if (animations[moveType]) animations[moveType]();
-        return canvas.toBuffer();
-    }
-    static drawWrestler(ctx, x, y, color, flipped = false) {
-        ctx.fillStyle = color;
-        const scale = flipped ? -1 : 1;
-        ctx.save();
-        ctx.translate(flipped ? x + 40 : x, y);
-        ctx.scale(scale, 1);
-        ctx.fillRect(15, 0, 10, 10);
-        ctx.fillRect(10, 10, 20, 15);
-        ctx.fillRect(5, 25, 10, 20);
-        ctx.fillRect(25, 25, 10, 20);
-        ctx.fillRect(12, 45, 16, 25);
-        ctx.fillRect(8, 70, 10, 25);
-        ctx.fillRect(22, 70, 10, 25);
-        ctx.restore();
-    }
-    static drawStrike(ctx) {
-        this.drawWrestler(ctx, 150, 200, '#FF6B6B');
-        this.drawWrestler(ctx, 550, 200, '#4ECDC4', true);
-        ctx.fillStyle = '#FFD93D';
-        ctx.beginPath();
-        ctx.arc(400, 250, 30, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.font = 'bold 60px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('POW!', 330, 270);
-    }
-    static drawGrapple(ctx) {
-        ctx.fillStyle = '#FF6B6B';
-        ctx.fillRect(280, 220, 40, 80);
-        ctx.fillStyle = '#4ECDC4';
-        ctx.fillRect(320, 220, 40, 80);
-        ctx.font = 'bold 50px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('GRAPPLE!', 300, 180);
-    }
-    static drawSuplex(ctx) {
-        ctx.fillStyle = '#FF6B6B';
-        ctx.save();
-        ctx.translate(350, 300);
-        ctx.rotate(-Math.PI / 4);
-        ctx.fillRect(0, 0, 40, 80);
-        ctx.restore();
-        this.drawWrestler(ctx, 250, 250, '#4ECDC4');
-        ctx.font = 'bold 50px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('SUPLEX!', 300, 150);
-    }
-    static drawDDT(ctx) {
-        ctx.fillStyle = '#FF6B6B';
-        ctx.save();
-        ctx.translate(400, 350);
-        ctx.rotate(Math.PI);
-        ctx.fillRect(-20, -40, 40, 80);
-        ctx.restore();
-        this.drawWrestler(ctx, 300, 250, '#4ECDC4');
-        ctx.font = 'bold 50px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('DDT!', 340, 180);
-    }
-    static drawPowerbomb(ctx) {
-        this.drawWrestler(ctx, 300, 200, '#4ECDC4');
-        ctx.fillStyle = '#FF6B6B';
-        ctx.fillRect(320, 150, 40, 50);
-        ctx.font = 'bold 50px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('POWERBOMB!', 250, 120);
-        for (let i = 0; i < 5; i++) {
-            ctx.fillStyle = '#FFD93D';
-            ctx.beginPath();
-            ctx.arc(280 + i * 50, 400, 15, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-    static drawSlam(ctx) {
-        ctx.fillStyle = '#FF6B6B';
-        ctx.fillRect(300, 400, 80, 40);
-        this.drawWrestler(ctx, 280, 150, '#4ECDC4');
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 5;
-        ctx.beginPath();
-        ctx.moveTo(340, 200);
-        ctx.lineTo(340, 380);
-        ctx.stroke();
-        ctx.font = 'bold 50px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('SLAM!', 320, 120);
-    }
-    static drawSubmission(ctx) {
-        ctx.fillStyle = '#FF6B6B';
-        ctx.fillRect(280, 280, 60, 40);
-        ctx.fillRect(290, 260, 40, 20);
-        ctx.fillStyle = '#4ECDC4';
-        ctx.fillRect(320, 300, 80, 30);
-        ctx.font = 'bold 50px Arial';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText('LOCKED!', 280, 220);
-    }
-    static drawFinisher(ctx) {
-        ctx.fillStyle = '#FFD93D';
-        for (let i = 0; i < 10; i++) {
-            ctx.beginPath();
-            ctx.arc(Math.random() * 800, Math.random() * 600, 20, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        this.drawWrestler(ctx, 300, 250, '#FF6B6B');
-        ctx.fillStyle = '#4ECDC4';
-        ctx.save();
-        ctx.translate(450, 400);
-        ctx.rotate(Math.PI / 2);
-        ctx.fillRect(-20, -40, 40, 80);
-        ctx.restore();
-        ctx.font = 'bold 80px Arial';
-        ctx.fillStyle = '#FF0000';
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 5;
-        ctx.strokeText('FINISHER!', 220, 150);
-        ctx.fillText('FINISHER!', 220, 150);
-    }
-}
 
 class CardGenerator {
     static async createCard(wrestler) {
@@ -213,16 +142,11 @@ class CardGenerator {
         ctx.font = 'bold 28px Arial';
         ctx.textAlign = 'center';
         ctx.fillText(wrestler.rarity, 200, 65);
-        try {
-            const wrestlerImg = await loadImage(wrestler.imageUrl);
-            ctx.drawImage(wrestlerImg, 50, 100, 300, 300);
-        } catch (error) {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            ctx.fillRect(50, 100, 300, 300);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 60px Arial';
-            ctx.fillText(wrestler.name.charAt(0), 200, 270);
-        }
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(50, 100, 300, 300);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 60px Arial';
+        ctx.fillText(wrestler.name.charAt(0), 200, 270);
         ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
         ctx.fillRect(30, 420, 340, 60);
         ctx.fillStyle = '#ffffff';
@@ -401,23 +325,26 @@ class UIComponents {
         const row1 = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder().setCustomId('match_strike').setLabel('👊 Strike').setStyle(ButtonStyle.Danger).setDisabled(disabled),
+                new ButtonBuilder().setCustomId('match_punch').setLabel('✊ Punch').setStyle(ButtonStyle.Danger).setDisabled(disabled),
+                new ButtonBuilder().setCustomId('match_kick').setLabel('🦵 Kick').setStyle(ButtonStyle.Primary).setDisabled(disabled),
                 new ButtonBuilder().setCustomId('match_grapple').setLabel('🤼 Grapple').setStyle(ButtonStyle.Primary).setDisabled(disabled),
-                new ButtonBuilder().setCustomId('match_suplex').setLabel('🔄 Suplex').setStyle(ButtonStyle.Success).setDisabled(disabled),
-                new ButtonBuilder().setCustomId('match_ddt').setLabel('⬇️ DDT').setStyle(ButtonStyle.Danger).setDisabled(disabled)
+                new ButtonBuilder().setCustomId('match_suplex').setLabel('🔄 Suplex').setStyle(ButtonStyle.Success).setDisabled(disabled)
             );
         const row2 = new ActionRowBuilder()
             .addComponents(
+                new ButtonBuilder().setCustomId('match_ddt').setLabel('⬇️ DDT').setStyle(ButtonStyle.Danger).setDisabled(disabled),
                 new ButtonBuilder().setCustomId('match_powerbomb').setLabel('💣 Powerbomb').setStyle(ButtonStyle.Primary).setDisabled(disabled),
                 new ButtonBuilder().setCustomId('match_slam').setLabel('🌪️ Slam').setStyle(ButtonStyle.Success).setDisabled(disabled),
                 new ButtonBuilder().setCustomId('match_submission').setLabel('🔒 Submission').setStyle(ButtonStyle.Danger).setDisabled(disabled),
-                new ButtonBuilder().setCustomId('match_special').setLabel('⚡ Special (30)').setStyle(ButtonStyle.Success).setDisabled(disabled)
+                new ButtonBuilder().setCustomId('match_clothesline').setLabel('👕 Clothesline').setStyle(ButtonStyle.Primary).setDisabled(disabled)
             );
         const row3 = new ActionRowBuilder()
             .addComponents(
-                new ButtonBuilder().setCustomId('match_finisher').setLabel('🔥 FINISHER (70)').setStyle(ButtonStyle.Danger).setDisabled(disabled),
-                new ButtonBuilder().setCustomId('match_rotate').setLabel('🔄 Rotate').setStyle(ButtonStyle.Primary).setDisabled(disabled),
-                new ButtonBuilder().setCustomId('match_rest').setLabel('💤 Rest').setStyle(ButtonStyle.Secondary).setDisabled(disabled),
-                new ButtonBuilder().setCustomId('match_taunt').setLabel('😤 Taunt').setStyle(ButtonStyle.Secondary).setDisabled(disabled)
+                new ButtonBuilder().setCustomId('match_dropkick').setLabel('🚀 Dropkick').setStyle(ButtonStyle.Success).setDisabled(disabled),
+                new ButtonBuilder().setCustomId('match_elbow').setLabel('💪 Elbow').setStyle(ButtonStyle.Danger).setDisabled(disabled),
+                new ButtonBuilder().setCustomId('match_knee').setLabel('🦿 Knee').setStyle(ButtonStyle.Primary).setDisabled(disabled),
+                new ButtonBuilder().setCustomId('match_special').setLabel('⚡ Special').setStyle(ButtonStyle.Success).setDisabled(disabled),
+                new ButtonBuilder().setCustomId('match_finisher').setLabel('🔥 FINISHER').setStyle(ButtonStyle.Danger).setDisabled(disabled)
             );
         return [row1, row2, row3];
     }
@@ -477,78 +404,62 @@ class MatchEngine {
         const defenderWrestler = this.getActiveWrestler(defender);
         let result = {};
         let animationType = null;
-        switch (action) {
-            case 'strike':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 8, 15, 10, 0.85, 5);
-                result.message = `👊 Strike for ${result.damage} damage!`;
-                animationType = 'strike';
-                break;
-            case 'grapple':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 10, 20, 15, 0.75, 8);
-                result.message = `🤼 Grapple for ${result.damage} damage!`;
-                animationType = 'grapple';
-                break;
-            case 'suplex':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 15, 25, 20, 0.70, 10);
-                result.message = `🔄 SUPLEX for ${result.damage} damage!`;
-                animationType = 'suplex';
-                break;
-            case 'ddt':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 12, 22, 18, 0.75, 9);
-                result.message = `⬇️ DDT for ${result.damage} damage!`;
-                animationType = 'ddt';
-                break;
-            case 'powerbomb':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 20, 30, 25, 0.65, 15);
-                result.message = `💣 POWERBOMB for ${result.damage} damage!`;
-                animationType = 'powerbomb';
-                break;
-            case 'slam':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 14, 24, 17, 0.70, 10);
-                result.message = `🌪️ SLAM for ${result.damage} damage!`;
-                animationType = 'slam';
-                break;
-            case 'submission':
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 10, 18, 15, 0.60, 12);
-                result.message = `🔒 SUBMISSION for ${result.damage} damage!`;
-                animationType = 'submission';
-                break;
-            case 'special':
-                if (attacker.momentum < 30) return { success: false, message: `❌ Need 30 momentum! (Have ${attacker.momentum})` };
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 18, 28, 20, 1.0, 0);
-                attacker.momentum -= 30;
-                result.message = `⚡ SPECIAL for ${result.damage} damage!`;
-                break;
-            case 'finisher':
-                if (attacker.momentum < 70) return { success: false, message: `❌ Need 70 momentum! (Have ${attacker.momentum})` };
-                result = this.performMove(attackerWrestler, defenderWrestler, attacker, 30, 45, 30, 1.0, 0);
-                attacker.momentum = 0;
-                result.message = `🔥 FINISHER for ${result.damage} damage!`;
-                animationType = 'finisher';
-                break;
-            case 'rest':
-                const staminaGain = Utils.randomInt(20, 30);
-                const healthGain = Utils.randomInt(10, 20);
-                attackerWrestler.stamina = Math.min(100, attackerWrestler.stamina + staminaGain);
-                attackerWrestler.health = Math.min(100, attackerWrestler.health + healthGain);
-                result = { success: true, message: `💤 Rest! +${staminaGain} STA, +${healthGain} HP!` };
-                break;
-            case 'taunt':
-                const momentumGain = Utils.randomInt(15, 25);
-                attacker.momentum = Math.min(100, attacker.momentum + momentumGain);
-                result = { success: true, message: `😤 Taunt! +${momentumGain} momentum!` };
-                break;
-            case 'rotate':
-                result = this.rotateWrestler(attacker);
-                break;
-            default:
-                return { success: false, message: 'Invalid action!' };
+        const attackerData = Utils.getWrestler(attackerWrestler.wrestlerId);
+        const moves = {
+            strike: { min: 8, max: 15, stamina: 10, chance: 0.85, momentum: 5 },
+            punch: { min: 7, max: 14, stamina: 8, chance: 0.87, momentum: 4 },
+            kick: { min: 9, max: 16, stamina: 12, chance: 0.83, momentum: 6 },
+            grapple: { min: 10, max: 20, stamina: 15, chance: 0.75, momentum: 8 },
+            suplex: { min: 15, max: 25, stamina: 20, chance: 0.70, momentum: 10 },
+            ddt: { min: 12, max: 22, stamina: 18, chance: 0.75, momentum: 9 },
+            powerbomb: { min: 20, max: 30, stamina: 25, chance: 0.65, momentum: 15 },
+            slam: { min: 14, max: 24, stamina: 17, chance: 0.70, momentum: 10 },
+            submission: { min: 10, max: 18, stamina: 15, chance: 0.60, momentum: 12 },
+            clothesline: { min: 11, max: 19, stamina: 13, chance: 0.77, momentum: 7 },
+            dropkick: { min: 13, max: 21, stamina: 16, chance: 0.72, momentum: 9 },
+            elbow: { min: 10, max: 17, stamina: 11, chance: 0.80, momentum: 6 },
+            knee: { min: 12, max: 20, stamina: 14, chance: 0.75, momentum: 8 }
+        };
+        if (moves[action]) {
+            const move = moves[action];
+            if (attackerWrestler.stamina < move.stamina) {
+                return { success: false, message: '❌ Not enough stamina!' };
+            }
+            if (Math.random() < move.chance) {
+                const damage = Utils.randomInt(move.min, move.max);
+                attackerWrestler.stamina -= move.stamina;
+                defenderWrestler.health = Math.max(0, defenderWrestler.health - damage);
+                attacker.momentum = Math.min(100, attacker.momentum + move.momentum);
+                result = { success: true, damage, message: `${attackerData.name} hits ${action.toUpperCase()} for ${damage} damage!` };
+                animationType = action;
+            } else {
+                attackerWrestler.stamina -= Math.floor(move.stamina / 2);
+                const blocked = Math.random() < 0.5;
+                result = { success: false, damage: 0, message: blocked ? `🛡️ BLOCKED!` : `🔄 REVERSED!` };
+                animationType = blocked ? 'blocked' : 'reversed';
+            }
+        } else if (action === 'special') {
+            if (attacker.momentum < 30) return { success: false, message: `❌ Need 30 momentum! (Have ${attacker.momentum})` };
+            const damage = Utils.randomInt(18, 28);
+            attackerWrestler.stamina -= 20;
+            attacker.momentum -= 30;
+            defenderWrestler.health = Math.max(0, defenderWrestler.health - damage);
+            result = { success: true, damage, message: `⚡ ${attackerData.name} hits SPECIAL for ${damage} damage!` };
+            animationType = 'special';
+        } else if (action === 'finisher') {
+            if (attacker.momentum < 70) return { success: false, message: `❌ Need 70 momentum! (Have ${attacker.momentum})` };
+            const damage = Utils.randomInt(30, 45);
+            attackerWrestler.stamina -= 30;
+            attacker.momentum = 0;
+            defenderWrestler.health = Math.max(0, defenderWrestler.health - damage);
+            result = { success: true, damage, message: `🔥 ${attackerData.name} hits ${attackerData.finisher.toUpperCase()}! ${damage} damage!` };
+            animationType = 'finisher';
         }
         if (defenderWrestler.health <= 0 && !defenderWrestler.eliminated) {
             defenderWrestler.eliminated = true;
-            const wrestlerData = Utils.getWrestler(defenderWrestler.wrestlerId);
+            const defenderData = Utils.getWrestler(defenderWrestler.wrestlerId);
             result.elimination = true;
-            result.eliminatedWrestler = wrestlerData.name;
+            result.eliminatedWrestler = defenderData.name;
             const rotateResult = this.rotateWrestler(defender);
             if (rotateResult.success) {
                 result.message += `\n💥 ${result.eliminatedWrestler} ELIMINATED!\n${rotateResult.message}`;
@@ -563,19 +474,6 @@ class MatchEngine {
             match.winner = winner;
         }
         return { success: true, result, match, winner, animationType };
-    }
-    performMove(attacker, defender, player, minDmg, maxDmg, stamina, hitChance, momentum) {
-        if (attacker.stamina < stamina) return { success: false, damage: 0, message: '❌ Not enough stamina!' };
-        if (Math.random() < hitChance) {
-            const damage = Utils.randomInt(minDmg, maxDmg);
-            attacker.stamina -= stamina;
-            defender.health = Math.max(0, defender.health - damage);
-            player.momentum = Math.min(100, player.momentum + momentum);
-            return { success: true, damage };
-        } else {
-            attacker.stamina -= Math.floor(stamina / 2);
-            return { success: false, damage: 0, message: '🛡️ Missed!' };
-        }
     }
     checkWinCondition(match) {
         const p1Alive = match.player1.wrestlers.filter(w => !w.eliminated).length;
@@ -595,24 +493,24 @@ class MatchEngine {
         const p2Alive = p2.wrestlers.filter(w => !w.eliminated).length;
         const embed = new EmbedBuilder()
             .setColor('#FF0000')
-            .setTitle('🤼 WWE 5v5 TAG TEAM MATCH!')
+            .setTitle('🤼 WWE 5v5 TAG MATCH!')
             .setDescription(`Turn ${match.turnNumber} | <@${match.currentTurn}>'s turn`)
             .addFields(
                 {
-                    name: `⭐ Player 1 - ${p1Alive}/5 Alive`,
-                    value: `Active: ${p1Wrestler.name}\nHP: ${Utils.progressBar(p1Active.health, 100)}\nSTA: ${Utils.progressBar(p1Active.stamina, 100)}\nMOM: ${p1.momentum}/100`,
+                    name: `⭐ P1 - ${p1Alive}/5`,
+                    value: `${p1Wrestler.name}\nHP: ${Utils.progressBar(p1Active.health, 100)}\nSTA: ${Utils.progressBar(p1Active.stamina, 100)}\nMOM: ${p1.momentum}`,
                     inline: true
                 },
                 { name: '⚔️', value: 'VS', inline: true },
                 {
-                    name: `⭐ Player 2 - ${p2Alive}/5 Alive`,
-                    value: `Active: ${p2Wrestler.name}\nHP: ${Utils.progressBar(p2Active.health, 100)}\nSTA: ${Utils.progressBar(p2Active.stamina, 100)}\nMOM: ${p2.momentum}/100`,
+                    name: `⭐ P2 - ${p2Alive}/5`,
+                    value: `${p2Wrestler.name}\nHP: ${Utils.progressBar(p2Active.health, 100)}\nSTA: ${Utils.progressBar(p2Active.stamina, 100)}\nMOM: ${p2.momentum}`,
                     inline: true
                 }
             );
         if (match.log.length > 0) {
             const lastAction = match.log[match.log.length - 1];
-            embed.addFields({ name: '📋 Last Action', value: lastAction.result.message });
+            embed.addFields({ name: '📋 Last', value: lastAction.result.message.substring(0, 1024) });
         }
         return embed;
     }
@@ -633,8 +531,8 @@ class CommandHandler {
         try {
             await command(message, args);
         } catch (error) {
-            console.error(`Error executing ${commandName}:`, error);
-            message.reply('❌ Error occurred!');
+            console.error(`Error: ${commandName}:`, error);
+            message.reply('❌ Error!');
         }
     }
 }
@@ -662,20 +560,18 @@ commandHandler.register('debut', async (message) => {
     await db.updateUser(userId, newUser);
     const embed = new EmbedBuilder()
         .setColor('#00FF00')
-        .setTitle('🎉 WELCOME TO WWE 5v5!')
-        .setDescription(`${message.author.username} - Your team is ready!`)
-        .addFields({ name: '💰 Purse', value: Utils.formatCurrency(CONFIG.STARTING_PURSE), inline: true }, { name: '🤼 Team', value: '5 Wrestlers', inline: true });
+        .setTitle('🎉 WELCOME!')
+        .setDescription(`${message.author.username}`)
+        .addFields({ name: '💰', value: Utils.formatCurrency(CONFIG.STARTING_PURSE) });
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('start', async (message, args) => {
-    await commandHandler.commands.get('debut')(message, args);
-});
+commandHandler.register('start', async (m, a) => await commandHandler.commands.get('debut')(m, a));
 
 commandHandler.register('drop', async (message) => {
     const userId = message.author.id;
     const user = await db.getUser(userId);
-    if (!user) return message.reply('❌ Use !debut first!');
+    if (!user) return message.reply('❌ Use !debut!');
     const rarity = Utils.weightedRandom(CONFIG.DROP_RATES);
     const wrestlersOfRarity = WRESTLERS_ARRAY.filter(w => w.rarity === rarity);
     const wrestler = Utils.randomElement(wrestlersOfRarity);
@@ -690,97 +586,64 @@ commandHandler.register('drop', async (message) => {
         .setTitle('🎴 NEW WRESTLER!')
         .setDescription(`${wrestler.rarity} - ${wrestler.name}`)
         .setImage(`attachment://${wrestler.id}.png`)
-        .addFields({ name: '💰 Value', value: Utils.formatCurrency(wrestler.basePrice) });
+        .addFields({ name: '💰', value: Utils.formatCurrency(wrestler.basePrice) });
     message.reply({ embeds: [embed], files: [attachment] });
 });
 
-commandHandler.register('pack', async (message, args) => {
-    await commandHandler.commands.get('drop')(message, args);
-});
-
-commandHandler.register('open', async (message, args) => {
-    await commandHandler.commands.get('drop')(message, args);
-});
+commandHandler.register('pack', async (m, a) => await commandHandler.commands.get('drop')(m, a));
+commandHandler.register('open', async (m, a) => await commandHandler.commands.get('drop')(m, a));
 
 commandHandler.register('daily', async (message) => {
     const userId = message.author.id;
     const user = await db.getUser(userId);
-    if (!user) return message.reply('❌ Use !debut first!');
+    if (!user) return message.reply('❌ !debut first!');
     const now = Date.now();
     const lastDaily = user.lastDaily || 0;
     const timeSince = now - lastDaily;
     const oneDay = 86400000;
     if (timeSince < oneDay) {
         const timeLeft = oneDay - timeSince;
-        return message.reply(`⏰ Daily available in ${Utils.formatDuration(timeLeft)}`);
+        return message.reply(`⏰ ${Utils.formatDuration(timeLeft)}`);
     }
     let streak = user.dailyStreak || 0;
     if (timeSince < oneDay * 2) streak++;
     else streak = 1;
-    const streakBonus = streak * 100;
-    const reward = CONFIG.DAILY_REWARD + streakBonus;
+    const reward = CONFIG.DAILY_REWARD + (streak * 100);
     user.purse += reward;
     user.totalCoinsEarned += reward;
     user.lastDaily = now;
     user.dailyStreak = streak;
     await db.updateUser(userId, user);
-    const embed = new EmbedBuilder()
-        .setColor('#00FF00')
-        .setTitle('📅 DAILY REWARD!')
-        .addFields({ name: '💰 Reward', value: Utils.formatCurrency(reward), inline: true }, { name: '🔥 Streak', value: `${streak} days`, inline: true }, { name: '💼 Balance', value: Utils.formatCurrency(user.purse), inline: true });
-    message.reply({ embeds: [embed] });
+    message.reply(`📅 DAILY! ${Utils.formatCurrency(reward)} | Streak: ${streak}`);
 });
 
-commandHandler.register('claim', async (message, args) => {
-    await commandHandler.commands.get('daily')(message, args);
-});
+commandHandler.register('claim', async (m, a) => await commandHandler.commands.get('daily')(m, a));
 
 commandHandler.register('vote', async (message) => {
     const userId = message.author.id;
     const user = await db.getUser(userId);
-    if (!user) return message.reply('❌ Use !debut first!');
+    if (!user) return message.reply('❌ !debut first!');
     const now = Date.now();
     const lastVote = user.lastVote || 0;
     const timeSince = now - lastVote;
     const twelveHours = 43200000;
-    if (timeSince < twelveHours) {
-        const timeLeft = twelveHours - timeSince;
-        return message.reply(`⏰ Vote available in ${Utils.formatDuration(timeLeft)}`);
-    }
-    const reward = CONFIG.VOTE_REWARD;
-    user.purse += reward;
-    user.totalCoinsEarned += reward;
+    if (timeSince < twelveHours) return message.reply(`⏰ ${Utils.formatDuration(twelveHours - timeSince)}`);
+    user.purse += CONFIG.VOTE_REWARD;
+    user.totalCoinsEarned += CONFIG.VOTE_REWARD;
     user.lastVote = now;
     await db.updateUser(userId, user);
-    message.reply(`🗳️ Thanks for voting! ${Utils.formatCurrency(reward)}`);
+    message.reply(`🗳️ ${Utils.formatCurrency(CONFIG.VOTE_REWARD)}`);
 });
 
 commandHandler.register('purse', async (message) => {
     const target = message.mentions.users.first() || message.author;
     const user = await db.getUser(target.id);
     if (!user) return message.reply(`❌ ${target.username} hasn't started!`);
-    const embed = new EmbedBuilder()
-        .setColor('#0099FF')
-        .setTitle(`💰 ${target.username}'s Purse`)
-        .addFields({ name: '💼 Balance', value: Utils.formatCurrency(user.purse), inline: true }, { name: '📈 Level', value: `${user.level}`, inline: true }, { name: '🎴 Cards', value: `${user.squad.length}`, inline: true });
-    message.reply({ embeds: [embed] });
+    message.reply(`💰 ${target.username}: ${Utils.formatCurrency(user.purse)} | Level ${user.level}`);
 });
 
-commandHandler.register('balance', async (message, args) => {
-    await commandHandler.commands.get('purse')(message, args);
-});
-
-commandHandler.register('bal', async (message, args) => {
-    await commandHandler.commands.get('purse')(message, args);
-});
-
-commandHandler.register('wallet', async (message, args) => {
-    await commandHandler.commands.get('purse')(message, args);
-});
-
-commandHandler.register('coins', async (message, args) => {
-    await commandHandler.commands.get('purse')(message, args);
-});
+commandHandler.register('bal', async (m, a) => await commandHandler.commands.get('purse')(m, a));
+commandHandler.register('balance', async (m, a) => await commandHandler.commands.get('purse')(m, a));
 
 commandHandler.register('squad', async (message) => {
     const target = message.mentions.users.first() || message.author;
@@ -790,22 +653,15 @@ commandHandler.register('squad', async (message) => {
     const embed = new EmbedBuilder()
         .setColor('#0099FF')
         .setTitle(`📦 ${target.username}'s Squad`)
-        .setDescription(`Total: ${user.squad.length} wrestlers`);
-    const displaySquad = user.squad.slice(0, 20);
-    displaySquad.forEach((card, i) => {
+        .setDescription(`Total: ${user.squad.length}`);
+    user.squad.slice(0, 20).forEach((card, i) => {
         const w = Utils.getWrestler(card.wrestlerId);
-        if (w) embed.addFields({ name: `${i + 1}. ${w.name}`, value: `${Utils.getRarityEmoji(w.rarity)} ${w.rarity} | ${w.stats.overall}`, inline: true });
+        if (w) embed.addFields({ name: `${i + 1}. ${w.name}`, value: `${Utils.getRarityEmoji(w.rarity)} ${w.stats.overall}`, inline: true });
     });
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('roster', async (message, args) => {
-    await commandHandler.commands.get('squad')(message, args);
-});
-
-commandHandler.register('collection', async (message, args) => {
-    await commandHandler.commands.get('squad')(message, args);
-});
+commandHandler.register('roster', async (m, a) => await commandHandler.commands.get('squad')(m, a));
 
 commandHandler.register('xi', async (message) => {
     const target = message.mentions.users.first() || message.author;
@@ -818,23 +674,17 @@ commandHandler.register('xi', async (message) => {
     }
     const embed = new EmbedBuilder()
         .setColor('#FF0000')
-        .setTitle(`⭐ ${target.username}'s Playing 5`);
+        .setTitle(`⭐ ${target.username}'s Team`);
     user.playingXI.forEach((cardId, i) => {
         const card = user.squad.find(c => c.id === cardId);
         if (!card) return;
         const w = Utils.getWrestler(card.wrestlerId);
-        if (w) embed.addFields({ name: `${i + 1}. ${w.name}`, value: `${Utils.getRarityEmoji(w.rarity)} OVR: ${w.stats.overall}`, inline: true });
+        if (w) embed.addFields({ name: `${i + 1}. ${w.name}`, value: `${w.stats.overall}`, inline: true });
     });
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('team', async (message, args) => {
-    await commandHandler.commands.get('xi')(message, args);
-});
-
-commandHandler.register('playingxi', async (message, args) => {
-    await commandHandler.commands.get('xi')(message, args);
-});
+commandHandler.register('team', async (m, a) => await commandHandler.commands.get('xi')(m, a));
 
 commandHandler.register('profile', async (message) => {
     const target = message.mentions.users.first() || message.author;
@@ -843,25 +693,16 @@ commandHandler.register('profile', async (message) => {
     const winRate = user.matchesPlayed > 0 ? ((user.wins / user.matchesPlayed) * 100).toFixed(1) : 0;
     const embed = new EmbedBuilder()
         .setColor('#0099FF')
-        .setTitle(`📊 ${target.username}'s Profile`)
+        .setTitle(`📊 ${target.username}`)
         .addFields(
-            { name: '📈 Level', value: `${user.level}`, inline: true },
-            { name: '💰 Purse', value: Utils.formatCurrency(user.purse), inline: true },
-            { name: '🎴 Cards', value: `${user.squad.length}`, inline: true },
-            { name: '⚔️ Wins', value: `${user.wins}`, inline: true },
-            { name: '📉 Losses', value: `${user.losses}`, inline: true },
-            { name: '📊 Win Rate', value: `${winRate}%`, inline: true }
+            { name: 'Level', value: `${user.level}`, inline: true },
+            { name: 'Wins', value: `${user.wins}`, inline: true },
+            { name: 'Win %', value: `${winRate}%`, inline: true }
         );
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('stats', async (message, args) => {
-    await commandHandler.commands.get('profile')(message, args);
-});
-
-commandHandler.register('me', async (message, args) => {
-    await commandHandler.commands.get('profile')(message, args);
-});
+commandHandler.register('stats', async (m, a) => await commandHandler.commands.get('profile')(m, a));
 
 commandHandler.register('leaderboard', async (message) => {
     const users = await db.loadData(DB_PATHS.USERS);
@@ -869,174 +710,119 @@ commandHandler.register('leaderboard', async (message) => {
     const sorted = userArray.sort((a, b) => b.wins - a.wins);
     const embed = new EmbedBuilder()
         .setColor('#FFD700')
-        .setTitle('🏆 LEADERBOARD')
-        .setDescription('Top 10 by wins');
+        .setTitle('🏆 TOP 10')
+        .setDescription('By wins');
     sorted.slice(0, 10).forEach((u, i) => {
         const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
-        embed.addFields({ name: `${medal} ${u.username}`, value: `${u.wins} wins | Level ${u.level}`, inline: false });
+        embed.addFields({ name: `${medal} ${u.username}`, value: `${u.wins} wins`, inline: false });
     });
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('lb', async (message, args) => {
-    await commandHandler.commands.get('leaderboard')(message, args);
-});
-
-commandHandler.register('top', async (message, args) => {
-    await commandHandler.commands.get('leaderboard')(message, args);
-});
-
-commandHandler.register('rank', async (message, args) => {
-    await commandHandler.commands.get('leaderboard')(message, args);
-});
+commandHandler.register('lb', async (m, a) => await commandHandler.commands.get('leaderboard')(m, a));
+commandHandler.register('top', async (m, a) => await commandHandler.commands.get('leaderboard')(m, a));
 
 commandHandler.register('view', async (message, args) => {
-    if (!args.length) return message.reply('❌ Specify wrestler!');
+    if (!args.length) return message.reply('❌ !view <wrestler>');
     const searchName = args.join(' ').toLowerCase();
     const wrestler = WRESTLERS_ARRAY.find(w => w.name.toLowerCase().includes(searchName));
-    if (!wrestler) return message.reply('❌ Wrestler not found!');
+    if (!wrestler) return message.reply('❌ Not found!');
     const embed = new EmbedBuilder()
         .setColor(Utils.getRarityColor(wrestler.rarity))
         .setTitle(`${Utils.getRarityEmoji(wrestler.rarity)} ${wrestler.name}`)
-        .setDescription(`*"${wrestler.signature}"*`)
         .addFields(
-            { name: '⭐ Overall', value: `${wrestler.stats.overall}`, inline: true },
-            { name: '🏷️ Rarity', value: wrestler.rarity, inline: true },
-            { name: '💰 Price', value: Utils.formatCurrency(wrestler.basePrice), inline: true },
-            { name: '💪 Power', value: `${wrestler.stats.power}`, inline: true },
-            { name: '⚡ Speed', value: `${wrestler.stats.speed}`, inline: true },
-            { name: '🛡️ Defense', value: `${wrestler.stats.defense}`, inline: true },
-            { name: '⚡ Finisher', value: wrestler.finisher }
+            { name: 'OVR', value: `${wrestler.stats.overall}`, inline: true },
+            { name: 'Rarity', value: wrestler.rarity, inline: true },
+            { name: 'Price', value: Utils.formatCurrency(wrestler.basePrice), inline: true },
+            { name: 'Finisher', value: wrestler.finisher }
         );
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('show', async (message, args) => {
-    await commandHandler.commands.get('view')(message, args);
-});
-
-commandHandler.register('card', async (message, args) => {
-    await commandHandler.commands.get('view')(message, args);
-});
+commandHandler.register('show', async (m, a) => await commandHandler.commands.get('view')(m, a));
 
 commandHandler.register('buy', async (message, args) => {
     const user = await db.getUser(message.author.id);
-    if (!user) return message.reply('❌ Use !debut first!');
-    if (!args.length) return message.reply('❌ Specify wrestler!');
+    if (!user) return message.reply('❌ !debut first!');
+    if (!args.length) return message.reply('❌ !buy <wrestler>');
     const searchName = args.join(' ').toLowerCase();
     const wrestler = WRESTLERS_ARRAY.find(w => w.name.toLowerCase().includes(searchName));
-    if (!wrestler) return message.reply('❌ Wrestler not found!');
-    if (user.purse < wrestler.basePrice) return message.reply(`❌ Need ${Utils.formatCurrency(wrestler.basePrice)} but have ${Utils.formatCurrency(user.purse)}`);
+    if (!wrestler) return message.reply('❌ Not found!');
+    if (user.purse < wrestler.basePrice) return message.reply(`❌ Need ${Utils.formatCurrency(wrestler.basePrice)}`);
     user.purse -= wrestler.basePrice;
     user.totalCoinsSpent += wrestler.basePrice;
     user.squad.push({ id: Utils.generateId(), wrestlerId: wrestler.id, acquiredAt: Date.now() });
     user.cardsOwned++;
     await db.updateUser(message.author.id, user);
-    message.reply(`✅ Bought **${wrestler.name}** for ${Utils.formatCurrency(wrestler.basePrice)}!`);
-});
-
-commandHandler.register('purchase', async (message, args) => {
-    await commandHandler.commands.get('buy')(message, args);
+    message.reply(`✅ Bought ${wrestler.name}!`);
 });
 
 commandHandler.register('sell', async (message, args) => {
     const user = await db.getUser(message.author.id);
-    if (!user) return message.reply('❌ Use !debut first!');
-    if (!args.length) return message.reply('❌ Specify wrestler!');
+    if (!user) return message.reply('❌ !debut first!');
+    if (!args.length) return message.reply('❌ !sell <wrestler>');
     const searchName = args.join(' ').toLowerCase();
     const userCard = user.squad.find(card => {
         const w = Utils.getWrestler(card.wrestlerId);
         return w && w.name.toLowerCase().includes(searchName);
     });
-    if (!userCard) return message.reply('❌ You don\'t own that wrestler!');
+    if (!userCard) return message.reply('❌ You don\'t own!');
     const wrestler = Utils.getWrestler(userCard.wrestlerId);
     const sellPrice = Math.floor(wrestler.basePrice * 0.7);
     user.purse += sellPrice;
-    user.totalCoinsEarned += sellPrice;
     user.squad = user.squad.filter(c => c.id !== userCard.id);
     user.playingXI = user.playingXI.filter(id => id !== userCard.id);
-    user.cardsOwned--;
     await db.updateUser(message.author.id, user);
-    message.reply(`✅ Sold **${wrestler.name}** for ${Utils.formatCurrency(sellPrice)}!`);
+    message.reply(`✅ Sold ${wrestler.name} for ${Utils.formatCurrency(sellPrice)}!`);
 });
 
-commandHandler.register('market', async (message, args) => {
-    let wrestlers = WRESTLERS_ARRAY;
-    let filterText = 'All Wrestlers';
-    if (args.length > 0) {
-        const rarity = args[0].toUpperCase();
-        if (['COMMON', 'RARE', 'EPIC', 'LEGENDARY', 'MYTHIC'].includes(rarity)) {
-            wrestlers = WRESTLERS_ARRAY.filter(w => w.rarity === rarity);
-            filterText = `${rarity} Wrestlers`;
-        }
-    }
+commandHandler.register('market', async (message) => {
     const embed = new EmbedBuilder()
         .setColor('#0099FF')
         .setTitle('🏪 MARKET')
-        .setDescription(`${filterText} - Showing ${Math.min(wrestlers.length, 15)} of ${wrestlers.length}`);
-    wrestlers.slice(0, 15).forEach(w => {
-        embed.addFields({ name: `${Utils.getRarityEmoji(w.rarity)} ${w.name}`, value: `OVR: ${w.stats.overall} | ${Utils.formatCurrency(w.basePrice)}`, inline: true });
+        .setDescription('Showing 15');
+    WRESTLERS_ARRAY.slice(0, 15).forEach(w => {
+        embed.addFields({ name: `${Utils.getRarityEmoji(w.rarity)} ${w.name}`, value: `${w.stats.overall} | ${Utils.formatCurrency(w.basePrice)}`, inline: true });
     });
-    embed.setFooter({ text: 'Use !buy <wrestler>' });
     message.reply({ embeds: [embed] });
 });
 
-commandHandler.register('shop', async (message, args) => {
-    await commandHandler.commands.get('market')(message, args);
-});
-
-commandHandler.register('store', async (message, args) => {
-    await commandHandler.commands.get('market')(message, args);
-});
+commandHandler.register('shop', async (m, a) => await commandHandler.commands.get('market')(m, a));
 
 commandHandler.register('play', async (message) => {
     const user1 = await db.getUser(message.author.id);
-    if (!user1) return message.reply('❌ Use !debut first!');
-    if (user1.playingXI.length < 5) return message.reply('❌ Need 5 wrestlers!');
+    if (!user1) return message.reply('❌ !debut first!');
+    if (user1.playingXI.length < 5) return message.reply('❌ Need 5!');
     const opponent = message.mentions.users.first();
     if (!opponent) return message.reply('❌ Mention opponent!');
-    if (opponent.bot) return message.reply('❌ Cannot battle bots!');
+    if (opponent.bot) return message.reply('❌ No bots!');
     const user2 = await db.getUser(opponent.id);
     if (!user2) return message.reply(`❌ ${opponent.username} hasn't started!`);
-    if (user2.playingXI.length < 5) return message.reply(`❌ ${opponent.username} needs 5 wrestlers!`);
+    if (user2.playingXI.length < 5) return message.reply(`❌ ${opponent.username} needs 5!`);
     const match = matchEngine.createMatch(message.author.id, opponent.id, message.channel.id);
     const p1Squad = user1.playingXI.map(cardId => user1.squad.find(c => c.id === cardId)).filter(c => c);
     const p2Squad = user2.playingXI.map(cardId => user2.squad.find(c => c.id === cardId)).filter(c => c);
     matchEngine.loadWrestlers(match, p1Squad, p2Squad);
     const embed = matchEngine.generateMatchEmbed(match);
     const buttons = UIComponents.createMatchButtons();
-    const matchMsg = await message.reply({ content: `🤼 5v5 MATCH! ${message.author} vs ${opponent}\n<@${match.currentTurn}> your turn!`, embeds: [embed], components: buttons });
-    match.messageId = matchMsg.id;
+    await message.reply({ content: `🤼 ${message.author} vs ${opponent}\n<@${match.currentTurn}> turn!`, embeds: [embed], components: buttons });
 });
 
-commandHandler.register('battle', async (message, args) => {
-    await commandHandler.commands.get('play')(message, args);
-});
-
-commandHandler.register('fight', async (message, args) => {
-    await commandHandler.commands.get('play')(message, args);
-});
+commandHandler.register('battle', async (m, a) => await commandHandler.commands.get('play')(m, a));
+commandHandler.register('fight', async (m, a) => await commandHandler.commands.get('play')(m, a));
 
 commandHandler.register('help', async (message) => {
     const embed = new EmbedBuilder()
         .setColor('#0099FF')
-        .setTitle('🤼 WWE BOT COMMANDS')
+        .setTitle('🤼 WWE BOT')
         .addFields(
-            { name: '🎯 Start', value: '!debut, !start' },
-            { name: '🎴 Cards', value: '!drop, !pack, !squad, !xi, !view <wrestler>' },
-            { name: '💰 Economy', value: '!daily, !vote, !purse, !buy <wrestler>, !sell <wrestler>, !market' },
-            { name: '⚔️ Battle', value: '!play @user - 8 moves: Strike, Grapple, Suplex, DDT, Powerbomb, Slam, Submission, Special, Finisher, Rotate, Rest, Taunt' },
-            { name: '📊 Stats', value: '!profile, !stats, !leaderboard' }
+            { name: 'Start', value: '!debut' },
+            { name: 'Cards', value: '!drop, !squad, !xi' },
+            { name: 'Economy', value: '!daily, !purse, !buy, !sell' },
+            { name: 'Battle', value: '!play @user (15 moves!)' },
+            { name: 'Stats', value: '!profile, !lb' }
         );
     message.reply({ embeds: [embed] });
-});
-
-commandHandler.register('commands', async (message, args) => {
-    await commandHandler.commands.get('help')(message, args);
-});
-
-commandHandler.register('h', async (message, args) => {
-    await commandHandler.commands.get('help')(message, args);
 });
 
 client.on('interactionCreate', async interaction => {
@@ -1051,14 +837,13 @@ client.on('interactionCreate', async interaction => {
                 break;
             }
         }
-        if (!matchId) return interaction.reply({ content: '❌ No active match!', ephemeral: true });
+        if (!matchId) return interaction.reply({ content: '❌ No match!', ephemeral: true });
         const match = matchEngine.activeMatches.get(matchId);
         const result = matchEngine.executeAction(matchId, interaction.user.id, action);
         if (!result.success) return interaction.reply({ content: result.message, ephemeral: true });
-        let files = [];
-        if (result.animationType) {
-            const animBuffer = PixelAnimationGenerator.createWrestlingAnimation(result.animationType);
-            files = [new AttachmentBuilder(animBuffer, { name: 'animation.png' })];
+        let content = result.result.message;
+        if (result.animationType && CONFIG.MOVE_ANIMATIONS[result.animationType]) {
+            content += `\n${CONFIG.MOVE_ANIMATIONS[result.animationType]}`;
         }
         if (result.winner) {
             const winnerId = result.winner;
@@ -1075,23 +860,19 @@ client.on('interactionCreate', async interaction => {
             loserUser.xp += CONFIG.XP_PER_LOSS;
             loserUser.level = Utils.calculateLevel(loserUser.xp);
             await db.updateUser(loserId, loserUser);
-            const embed = new EmbedBuilder()
-                .setColor('#00FF00')
-                .setTitle('🏆 MATCH FINISHED!')
-                .setDescription(`<@${winnerId}> WINS!`);
-            await interaction.update({ content: `🏆 <@${winnerId}> WINS!`, embeds: [embed], components: [], files });
+            await interaction.update({ content: `🏆 <@${winnerId}> WINS!`, embeds: [], components: [] });
             matchEngine.activeMatches.delete(matchId);
         } else {
             const embed = matchEngine.generateMatchEmbed(result.match);
             const buttons = UIComponents.createMatchButtons();
-            await interaction.update({ content: `${result.result.message}\n<@${result.match.currentTurn}> your turn!`, embeds: [embed], components: buttons, files });
+            await interaction.update({ content: `${content}\n<@${result.match.currentTurn}> turn!`, embeds: [embed], components: buttons });
         }
     }
 });
 
 client.on('ready', async () => {
-    console.log(`✅ ${client.user.tag} is ONLINE!`);
-    client.user.setActivity('!help | WWE 5v5', { type: 3 });
+    console.log(`✅ ${client.user.tag} ONLINE!`);
+    client.user.setActivity('!help', { type: 3 });
     for (const pathValue of Object.values(DB_PATHS)) {
         await db.loadData(pathValue);
     }
